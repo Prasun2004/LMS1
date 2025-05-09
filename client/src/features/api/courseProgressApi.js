@@ -16,8 +16,8 @@ export const courseProgressApi =createApi({
             }),
         }),
         updateLectureProgress: builder.mutation({
-            query:({courseId,LectureId})=>({
-                url:`/${courseId}/lecture/${LectureId}/view`,
+            query:({courseId,lectureId})=>({
+                url:`/${courseId}/lecture/${lectureId}/view`,
                 method:"POST"
             }),
         }),

@@ -4,11 +4,15 @@ import { CourseProgress } from "../models/courseProgressmodels.js";
 export const getCourseProgress =async(req,res)=>{
     try {
         const {courseId} =req.params;
-        const {userId} =req.id;
+        const userId =req.id;
+
+     
         
         let courseProgress =await CourseProgress.findOne({courseId,userId}).populate("courseId");
+        
 
         const courseDetails =await Course.findById(courseId).populate("lectures");
+
 
         if (!courseDetails) {
             return res.status(404).json({
@@ -46,9 +50,10 @@ export const getCourseProgress =async(req,res)=>{
 export const updateLectureProgress =async(req,res)=>{
     try {
         const {lectureId,courseId} =req.params;
-        const {userId} =req.id;
-
+        const userId =req.id;
+         console.log(lectureId,courseId,userId);
         let courseProgress =await CourseProgress.findOne({courseId,userId});
+       
         
         if (!courseProgress) {
                 courseProgress =  new CourseProgress({
@@ -60,8 +65,8 @@ export const updateLectureProgress =async(req,res)=>{
         }
         
         const lectureIndex =courseProgress.lectureProgress.findIndex((lecture)=>lecture.lectureId === lectureId);
-
-        if (!lectureIndex !== -1) {
+       
+        if (lectureIndex !== -1) {
             courseProgress.lectureProgress[lectureIndex].viewed=true;
         }else{
             courseProgress.lectureProgress.push({
@@ -94,7 +99,7 @@ export const updateLectureProgress =async(req,res)=>{
 
 export const  markAsCompleted =async(req,res)=>{
     try {
-        const {userId} =req.id;
+        const userId =req.id;
 
         const {courseId} =req.params;
 
@@ -123,7 +128,7 @@ export const  markAsCompleted =async(req,res)=>{
 
 export const  markAsIncompleted =async(req,res)=>{
     try {
-        const {userId} =req.id;
+        const userId =req.id;
 
         const {courseId} =req.params;
 
