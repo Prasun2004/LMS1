@@ -51,6 +51,7 @@ export default function CourseProgress() {
 
    const handleSelectLecture=(lecture)=>{
     setCurrentLecture(lecture);
+    hanldeLectureProgress(lecture._id);
    }
 
    const handleCompleteCourse =async()=>{

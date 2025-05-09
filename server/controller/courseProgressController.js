@@ -51,7 +51,7 @@ export const updateLectureProgress =async(req,res)=>{
     try {
         const {lectureId,courseId} =req.params;
         const userId =req.id;
-         console.log(lectureId,courseId,userId);
+       
         let courseProgress =await CourseProgress.findOne({courseId,userId});
        
         
