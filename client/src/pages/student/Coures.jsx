@@ -5,8 +5,9 @@ import { useGetPublishedCourseQuery } from '@/features/api/courseApi';
 
 export default function Courses() {
     const {data,isLoading,isSuccess,isError}=useGetPublishedCourseQuery();
+    
     console.log(data);
-    if(isError) return <h1>some error come</h1>
+    if(isError) return 
   return (
     <div className='bg-gray-50'>
          <div className='max-w-7xl mx-auto p-6'>
