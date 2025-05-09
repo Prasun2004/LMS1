@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { userLoggedIn, userLoggedout } from "../authSlice";
+import { userLoggedIn, userLoggedout, userRegister } from "../authSlice";
 
 const USER_API = "http://localhost:8080/user";
 
@@ -16,6 +16,15 @@ export const authApi = createApi({
         method: "POST",
         body: inputData,
       }),
+      async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+        try {
+          const result = await queryFulfilled;
+          console(result.data.user);
+          dispatch(userRegister({ user: result.data.user }));
+        } catch (error) {
+          console.error("Registrion error:", error);
+        }
+      },
     }),
     loginUser: builder.mutation({
       query: (inputData) => ({
