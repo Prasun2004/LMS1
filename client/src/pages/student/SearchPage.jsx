@@ -5,11 +5,14 @@ import { AlertCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
+import { useGetSearchCourseQuery } from '@/features/api/courseApi';
 
 export default function SearchPage() {
 
-    const isLoading =false;
+   
     const isEmpty=false;
+
+    const {data,isLoading} =useGetSearchCourseQuery();
 
   return (
     <div className='max-w-7xl mx-auto p-4 md:p-8'>

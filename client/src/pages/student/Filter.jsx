@@ -21,7 +21,7 @@ const categories = [
 export default function Filter() {
 
     const handleCategory=(categoryId)=>{
-
+       
     }
   return (
     <div className='w-full md:w-[20%]'>

@@ -19,6 +19,24 @@ export const courseApi = createApi({
             }),
             invalidatesTags:['Refetch_Creator_Course','Refetch_Lecture'],
         }),
+        getSearchCourse :builder.query({
+            query:({query,categories, sortByPrice})=>{
+                let queryString = `/search?query=${encodeURIComponent(query)}`
+                if (categories && categories.length>0) {
+                     const categoriesStirng= categories.map(encodeURIComponent).join(",")
+                     queryString+=`&categories=${categoriesStirng}`
+                }
+                if (sortByPrice) {
+                    queryString+=`&sortByPrice=${encodeURIComponent(sortByPrice)}`;
+                }
+
+                return {
+                 url: queryString,
+                method:"GET"
+                }
+
+            }
+        }),
         getPublishedCourse:builder.query({
             query:()=>({
                 url:'/published-course',
@@ -101,5 +119,6 @@ export const {
     useRemoveLectureMutation,
     useGetLectureByIdQuery,
     usePublishCourseMutation,
-    useGetPublishedCourseQuery
+    useGetPublishedCourseQuery,
+    useGetSearchCourseQuery
 } =courseApi
