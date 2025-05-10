@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
 import SingleCourse from './SingleCourse';
+import { useLoadUserQuery } from '@/features/api/authApi';
 
 export default function MyLearing() {
-    const [isLoading,setIsLoading]=useState(false);
-    const mylearing=[];
+ 
+    const {data,isLoading}  = useLoadUserQuery();
+
+    const mylearing =data?.user?.enrolledCourses || [];
+    
   return (
     <div className='max-w-xl mx-auto my-24 px-4 md:px-0'>
      <h1 className='font-bold text-2xl'>My Learing</h1>

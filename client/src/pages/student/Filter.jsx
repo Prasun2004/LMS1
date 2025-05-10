@@ -2,7 +2,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Separator } from '@/components/ui/separator'
-import React from 'react'
+import React, { useState } from 'react'
 
 const categories = [
   { id: "nextjs", label: "Next JS" },
@@ -13,21 +13,34 @@ const categories = [
   { id: "backend development", label: "Backend Development" },
   { id: "javascript", label: "Javascript" },
   { id: "python", label: "Python" },
-  { id: "docker", label: "Docker" },
+  { id: "Docker", label: "Docker" },
   { id: "mongodb", label: "MongoDB" },
   { id: "html", label: "HTML" },
 ];
 
-export default function Filter() {
+export default function Filter({handleFilterChange}) {
+
+    const [selectedCategories,setSelectedCategories]=useState([]);
+    const [sortByPrice,setSortByPrice]=useState("");
 
     const handleCategory=(categoryId)=>{
-       
+       setSelectedCategories( (prevCategories)=>{
+         const newCategories = prevCategories.includes(categoryId) ? prevCategories.filter((id)=> id!==categoryId) : [...prevCategories,categoryId] ;
+         handleFilterChange(newCategories,sortByPrice);
+         return newCategories;
+        }
+       )
+    };
+
+    const selectByPriceHandler =(selectedvalue)=>{
+        setSortByPrice(selectedvalue);
+        handleFilterChange(selectedCategories,selectedvalue);
     }
   return (
     <div className='w-full md:w-[20%]'>
         <div className='flex-items-center justify-between'>
           <h1 className='font-semibold text-lg md:text-xl'>Filter option</h1>
-          <Select>
+          <Select onValueChange={selectByPriceHandler}>
             <SelectTrigger>
                 <SelectValue placeholder="sort by"/>
             </SelectTrigger>

@@ -72,11 +72,11 @@ export const  searchCourse =async(req,res)=>{
             searchCriteria.category ={$in : categories}
         }
         const sortOptions={};
-
+       
         if (sortByPrice ==="low") {
-            sortOptions.coursePrice=1; // sort by price in asending order
+            sortOptions.coursePrice= -1; // sort by price in asending order
         } else if (sortByPrice ==="high") {
-            sortOptions.coursePrice =1 //decending order
+            sortOptions.coursePrice = 1 //decending order
         }
 
         let courses =await Course.find(searchCriteria).populate({path:"creator",select:"name photoUrl"}).sort(sortOptions);
