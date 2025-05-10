@@ -20,6 +20,7 @@ import CreateLecture from './pages/admin/lectures/CreateLecture'
 import Editlecture from './pages/admin/lectures/Editlecture'
 import CourseDetails from './pages/student/CourseDetails'
 import CourseProgress from './pages/student/CourseProgress'
+import SearchPage from './pages/student/SearchPage'
 
 function App() {
   const appRouter=createBrowserRouter([
@@ -43,6 +44,10 @@ function App() {
         {
           path:"my-learing",
           element:<MyLearing/>
+        },
+        {
+          path:"course/search",
+          element:<SearchPage/>
         },
         {
           path:"profile",
