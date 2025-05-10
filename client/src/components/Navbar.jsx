@@ -37,6 +37,8 @@ export default function Navbar() {
     const navigate =useNavigate();
      const {user}=useSelector(store =>store.auth); 
 
+     console.log(user);
+
     const logouthandler = async()=>{
        await logoutUser();
     }

@@ -62,14 +62,10 @@ export function Login() {
      const inputData= type =="signUp" ? signUpInput :logINInput;
      console.log(inputData);
      const action =type=="signUp"? registerUser :loginUser;
-     await action (inputData);
+     await action(inputData);
   }
 
-  const handleChange = (e, type) => {
-    console.log(signUpInput.name);
-    const inputData = type === "signUp" ? signUpInput : logINInput;
-    console.log(inputData);
-  };
+  
 
   useEffect(()=>{
        if (registerSuccess && registerData) {
