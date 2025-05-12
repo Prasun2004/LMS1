@@ -42,10 +42,9 @@ function App() {
         },
         {
           path:"login",
-          element:<Login/>
-          // <AuthenticatedUser>
-          //   <Login/>
-          // </AuthenticatedUser>
+          element:<AuthenticatedUser>
+            <Login/>
+          </AuthenticatedUser>
         },
         {
           path:"my-learing",

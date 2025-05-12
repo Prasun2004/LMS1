@@ -144,7 +144,7 @@ const user =data && data.user;
         <h1 className='font-medium text-lg'>Cousrse you are enrolled</h1>
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 my-5'>
            {
-            user.enrolledCourses.length===0 ? <h1>you have no enroll course</h1> :(
+            user?.enrolledCourses.length===0 ? <h1>you have no enroll course</h1> :(
                 user.enrolledCourses.map((course,index)=><SingleCourse course={course} key={course._id}/>)
             )
            }

@@ -6,6 +6,7 @@ import bcrypt from "bcryptjs";
 export const register =async (req,res)=>{
     try {
         const {name,email,password}=req.body;
+       
         if (!name || !email || !password) {
             return res.status(400).json({
                 success:false,
@@ -13,6 +14,7 @@ export const register =async (req,res)=>{
             })
         }
             const user=await User.findOne({email});
+           
             if (user) {
                 return res.status(400).json({
                     success:false,
@@ -25,13 +27,14 @@ export const register =async (req,res)=>{
                 email,
                 password:hashpassword
             });
-            
-            return res.status(201).json({
-                data:{
-                  name,
-                  email,
-                  hashpassword
-                },
+            const data={
+                name,
+                email,
+                password
+            };
+           
+           return res.status(201).json({
+                data,
                 success:true,
                 message:"registration successfully completed"
             })

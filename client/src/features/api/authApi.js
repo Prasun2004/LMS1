@@ -16,14 +16,6 @@ export const authApi = createApi({
         method: "POST",
         body: inputData,
       }),
-      async onQueryStarted(arg, { queryFulfilled, dispatch }) {
-        try {
-          const result = await queryFulfilled;
-          dispatch(userLoggedIn({ user: result.data.user }));
-        } catch (error) {
-          console.error("Registrion error:", error);
-        }
-      },
     }),
     loginUser: builder.mutation({
       query: (inputData) => ({
