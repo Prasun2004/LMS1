@@ -34,7 +34,6 @@ export const register =async (req,res)=>{
             };
         
            return res.status(201).json({
-                data,
                 success:true,
                 message:"registration successfully completed"
             })
