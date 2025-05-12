@@ -25,7 +25,7 @@ export default function AddCourse() {
   const [createCourse,{data,isLoading,error,isSuccess}]=useCreateCourseMutation();
 
   const createhandleCourse =async()=>{
-       console.log(category,courseTitle);
+     //  console.log(category,courseTitle);
        await createCourse({category,courseTitle});
   }
 
@@ -35,12 +35,12 @@ export default function AddCourse() {
 
   useEffect(()=>{
       if (isSuccess) {
-        console.log(data);
+       // console.log(data);
         toast.success("Successful create");
         navigate("/admin/course");
       }
       if (error) {
-        console.log(error),
+      //  console.log(error),
         toast.error("fail to create");
       }
   },[isSuccess,error])

@@ -40,7 +40,7 @@ export default function LectureTab() {
             setUploadInfo(lecture.videoInfo);
         }
     },[lecture])
-    console.log(data);
+   // console.log(data);
     const fileChangeHandler=async(e)=>{
         const file =e.target.files[0];
         if (file) {
@@ -54,13 +54,13 @@ export default function LectureTab() {
                     }
                 });
                 if (res.data.success) {
-                    console.log(res);
+                   // console.log(res);
                     setUploadInfo({videoUrl:res.data.data.url,publicId:res.data.data.public_id});
                     setBtnDisable(false);
                     toast.success("video upload sucessful");
                 }
             } catch (error) {
-                console.log(error);
+                //console.log(error);
                 toast.error("video upload fail");
             }finally{
                 setMediaprogress(false);
@@ -84,15 +84,15 @@ export default function LectureTab() {
         toast.success("edit successful");
       }
       if (removeisSuccess) {
-         console.log(removeisSuccess);
+        // console.log(removeisSuccess);
          toast.success("remove successful");
       }
       if (error) {
-        console.log(error);
+       // console.log(error);
         toast.error("fail to edit lecture");
       }
       if (removeError) {
-         console.log(removeError);
+        // console.log(removeError);
          toast.error("fail to remove");
       }
     },[isSuccess,error,removeError,removeisSuccess])

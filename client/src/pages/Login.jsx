@@ -67,21 +67,23 @@ export function Login() {
   
 
   useEffect(()=>{
+    
        if (registerSuccess && registerData) {
-        console.log(registerData);
+        
          toast.success(  "signup successfully && Please Login");
          navigate("/login");
+         location.reload();
        }
        if (loginSuccess && loginData) {
          toast.success(loginData?.message || "login successful");
          navigate("/");
        }
        if (registerError) {
-        console.log(registerError);
+       // console.log(registerError);
          toast.error(registerData?.data?.message || "signup fail");
        }
        if (loginError) {
-        console.log(loginError);
+       // console.log(loginError);
         toast.error(loginData?.data?.message || "login fail");
        }
   },[loginLoading,registerLoading,loginData,registerData,loginError,registerError]);

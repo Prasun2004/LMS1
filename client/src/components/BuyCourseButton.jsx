@@ -9,7 +9,7 @@ export default function BuyCourseButton({courseId}) {
 
   useEffect(()=>{
     if (isSuccess) {
-      console.log(isSuccess);
+      //console.log(isSuccess);
       toast.success("successful");
       if (data?.url) {
          window.location.href=data.url
@@ -18,16 +18,16 @@ export default function BuyCourseButton({courseId}) {
       }
     }
     if (isError) {
-       console.log(isError);
+     //  console.log(isError);
        toast.error("fail to create checkout");
     }
     
   },[data,isSuccess,isError,error]);
 
-  console.log(data);
+ // console.log(data);
 
   const purchaseCourseHandler = async ()=>{
-    console.log(courseId);
+  //  console.log(courseId);
     await createCheechoutSession(courseId)
   }
   return (

@@ -19,22 +19,22 @@ export default function CreateLecture() {
 
      const {data:lectureData,isLoading:lectureLoading,isError:lectureError,refetch}=useGetCourseLectureQuery(courseId);
 
-     console.log(lectureData);
+    // console.log(lectureData);
      
-     console.log(data);
+     //console.log(data);
      const createLectureHandler= async()=>{
-        console.log(lectureTitle);
+       // console.log(lectureTitle);
          await createLecture({lectureTitle,courseId});
      } 
 
      useEffect(()=>{
         if (isSuccess) {
-            console.log(isLoading);
+           // console.log(isLoading);
             refetch();
             toast.success("create successful");
         }
         if (error) {
-            console.log(error);
+            //console.log(error);
             toast.error("fail to create");
         }
      },[isSuccess,error])

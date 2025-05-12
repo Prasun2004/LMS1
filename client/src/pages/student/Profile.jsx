@@ -22,11 +22,11 @@ export default function Profile() {
     const [photo,setPhoto]=useState("");
     const [role,setRole]=useState("");
     const {data,isLoading,refetch}= useLoadUserQuery();
-    console.log(data);
+  
 
     const [updateUser,{data:updateData,isLoading:updateisLoading,isError,error,isSuccess}] = useUpdateUserMutation();
 
-    console.log(updateUser);
+   
     const onchangehandler =(e)=>{
         const file=e.target.files?.[0];
         console.log(file);
@@ -78,19 +78,19 @@ const user =data && data.user;
             <div className='mb-2'>
                 <h1 className='font-semibold text-gray-900 dark:text-gray-100 '>
                     Name:
-                    <span className='font-normal text-gray-700 dark:text-gray-200 ml-2'>{user.name}</span>
+                    <span className='font-normal text-gray-700 dark:text-gray-200 ml-2'>{user?.name}</span>
                 </h1>
             </div>
             <div className='mb-2'>
                 <h1 className='font-semibold text-gray-900 dark:text-gray-100 '>
                     email:
-                    <span className='font-normal text-gray-700 dark:text-gray-200 ml-2'>{user.email}</span>
+                    <span className='font-normal text-gray-700 dark:text-gray-200 ml-2'>{user?.email}</span>
                 </h1>
             </div>
             <div className='mb-2'>
                 <h1 className='font-semibold text-gray-900 dark:text-gray-100 '>
                      Role:
-                    <span className='font-normal text-gray-700 dark:text-gray-200 ml-2'>{user.role}</span>
+                    <span className='font-normal text-gray-700 dark:text-gray-200 ml-2'>{user?.role}</span>
                 </h1>
             </div>
             <Dialog>

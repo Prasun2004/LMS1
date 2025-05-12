@@ -19,7 +19,7 @@ export default function CourseTab() {
    
    const [editCourse,{data,isLoading,isSuccess,error}]=useEditCourseMutation(courseId);
 
-   console.log(data);
+   //console.log(data);
 
    
    
@@ -42,7 +42,7 @@ export default function CourseTab() {
 
    const [publishCourse,{}]=usePublishCourseMutation();
 
-   console.log(coursebyData);
+   //console.log(coursebyData);
 
    const changeEventHandler=(e)=>{
      const {name,value} =e.target;
@@ -81,13 +81,13 @@ export default function CourseTab() {
     formData.append("coursePrice", input.coursePrice);
     formData.append("courseThumbnail", input.courseThumbnail);
     
-    console.log(input);
+    //console.log(input);
     await editCourse(  {formData,courseId} );
    }
 
    useEffect(()=>{
     if (isSuccess) {
-      console.log(isSuccess);
+    //  console.log(isSuccess);
       toast.success("successfully create");
       if (error) {
         toast.error("fail to update");
@@ -96,7 +96,7 @@ export default function CourseTab() {
    },[isSuccess,error])
 
    const course =coursebyData?.course;
-   console.log(course);
+  // console.log(course);
 
    const publishStatusHandler=async(action)=>{
         try {
@@ -107,7 +107,7 @@ export default function CourseTab() {
                toast.success("successfuly publish");
             }
         } catch (error) {
-           console.log(error);
+           console.error(error);
         }
    }
 

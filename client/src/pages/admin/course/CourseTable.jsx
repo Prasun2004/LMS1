@@ -24,7 +24,7 @@ export default function CourseTable() {
       return <h1>Loading .....</h1>
     }
     
-    console.log(data);
+    //console.log(data);
    
        
   return (

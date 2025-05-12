@@ -17,14 +17,11 @@ import {
     Sheet,
     SheetClose,
     SheetContent,
-    SheetDescription,
     SheetFooter,
     SheetHeader,
     SheetTitle,
     SheetTrigger,
   } from "./ui/sheet";
-import { Label } from './ui/label';
-import { Input } from './ui/input';
    import { Separator } from "@radix-ui/react-dropdown-menu";
   import { Link, useNavigate } from "react-router-dom";
   import { useLogoutUserMutation } from "@/features/api/authApi";
@@ -32,20 +29,20 @@ import { Input } from './ui/input';
   import { useSelector } from "react-redux";
 
 export default function Navbar() {
-   // const [user,setUser]=useState(true);
+  
     const [logoutUser, {data,isSuccess}] = useLogoutUserMutation();
     const navigate =useNavigate();
      const {user}=useSelector(store =>store.auth); 
 
-     console.log(user);
+     //console.log(user);
 
     const logouthandler = async()=>{
        await logoutUser();
     }
-    console.log(user);
+   
     useEffect(()=>{
        if (isSuccess) {
-          console.log(isSuccess);
+         // console.log(isSuccess);
           toast.success("log out successful");
           navigate("/login");
        }
@@ -133,7 +130,7 @@ const MobileNavbar =({user})=>{
 
     useEffect(()=>{
        if (isSuccess) {
-          console.log(isSuccess);
+         // console.log(isSuccess);
           toast.success("log out successful");
           navigate("/login");
        }
