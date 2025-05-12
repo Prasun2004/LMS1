@@ -112,7 +112,8 @@ export const getuserProfile=async(req,res)=>{
 export const updateProfile =async(req,res)=>{
     try {
         const userId=req.id;
-        const {name}=req.body;
+        const {name,role}=req.body;
+        
         const profilePhoto =req.file;
        // console.log(profilePhoto,"117");
         const user =await User.findById(userId);
@@ -125,19 +126,19 @@ export const updateProfile =async(req,res)=>{
 
         if (user.photoUrl) {
             const publicId=user.photoUrl.split("/").pop().split(".")[0];
-            console.log(publicId);
+            
             deleteMedia(publicId);
         }
         const cloudResponse= await uploadMedia(profilePhoto.path);
-        console.log(cloudResponse,"132");
         const photoUrl =cloudResponse.secure_url;
-       // console.log(photoUrl);
-        const updateData ={name,photoUrl};
+      
+        const updateData ={name,photoUrl,role};
         const updateUser=await User.findByIdAndUpdate(userId,updateData,{new:true}).select("-password");
-
+       
         return res.status(200).json({
             message :"user profile updated",
-            success:true
+            success:true,
+            updateUser
         })
 
     } catch (error) {

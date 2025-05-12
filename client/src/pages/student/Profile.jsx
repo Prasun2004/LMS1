@@ -20,7 +20,7 @@ import { toast } from 'sonner'
 export default function Profile() {
     const [name,setName]=useState("");
     const [photo,setPhoto]=useState("");
-    const [email,setEmail]=useState("");
+    const [role,setRole]=useState("");
     const {data,isLoading,refetch}= useLoadUserQuery();
     console.log(data);
 
@@ -35,12 +35,12 @@ export default function Profile() {
     }
 
     const updateUserhandler= async ()=>{
-         console.log(name);
-         console.log(photo);
+         
 
          const formData=new FormData();
          formData.append("name",name);
          formData.append("profilePhoto",photo);
+         formData.append("role",role);
 
          await updateUser(formData);
     }
@@ -110,6 +110,12 @@ const user =data && data.user;
               Name
             </Label>
             <Input id="name" type="text" value={name} className="col-span-3" onChange={(e)=>setName(e.target.value)} />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="role" className="text-right">
+               Role
+            </Label>
+            <Input id="role" type="text" value={role}  className="col-span-3" onChange={(e)=>setRole(e.target.value)}/>
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="username" className="text-right">
