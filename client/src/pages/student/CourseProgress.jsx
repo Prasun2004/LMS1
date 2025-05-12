@@ -74,7 +74,7 @@ export default function CourseProgress() {
   }
  
   return (
-    <div className='max-w-7xl mx-auto p-4 mt-20'>
+    <div className='max-w-7xl mx-auto p-4'>
       <div className='flex justify-between mb-4'>
         <h1 className='text-2xl font-bold'>{data?.data?.courseDetails?.courseTitle}</h1>
         <Button onClick={data?.data?.completed ? handleinCompleteCourse :handleCompleteCourse} variant={data?.data?.completed ? "outline" :" default"}>
@@ -109,7 +109,7 @@ export default function CourseProgress() {
             {
              data?.data?.courseDetails?.lectures?.map((lecture,idx)=>(
               <Card key={idx} 
-              className={`mb-3 hover:cursor-pointer transtion transform ${lecture?._id === currentLecture?._id ? 'bg-gray-200' :'dark:bg-gray-800'}`} 
+              className={`mb-3 hover:cursor-pointer transtion transform ${lecture?._id === currentLecture?._id ? 'bg-gray-200 dark:bg-gray-800' :'dark:bg-gray-800'}`} 
               onClick={()=>handleSelectLecture(lecture)}>
                 <CardContent className='flex items-center justify-between p-4'>
                   <div className='flex item-center'>

@@ -8,4 +8,31 @@ export const  ProtectedRoute =({children}) =>{
    if (!isAuthenticated) {
       return <Navigate to="/login"/>
    }
+
+   return children;
 }
+
+export const  AuthenticatedUser =({children}) =>{
+   const {isAuthenticated} =useSelector(store=>store.auth);
+
+   if (isAuthenticated) {
+      return <Navigate to="/"/>
+   }
+
+   return children;
+}
+
+export const  AdminRoute =({children})=>{
+    const {user,isAuthenticated} =useSelector(store=>store.auth);
+
+    if (!isAuthenticated) {
+        return <Navigate to="/login"/>
+    }
+
+    if (user?.role !== "instrutor") {
+        return <Navigate to="/"/>
+    }
+    return children;
+
+}
+

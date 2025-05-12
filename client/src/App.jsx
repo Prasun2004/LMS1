@@ -21,6 +21,9 @@ import Editlecture from './pages/admin/lectures/Editlecture'
 import CourseDetails from './pages/student/CourseDetails'
 import CourseProgress from './pages/student/CourseProgress'
 import SearchPage from './pages/student/SearchPage'
+import { AdminRoute, AuthenticatedUser, ProtectedRoute } from './components/ProtectedRoute'
+import PurchaseCourseProtectedRoute from './components/PurchaseCourseProtected'
+import { ThemeProvider } from './components/ThemeProvider'
 
 function App() {
   const appRouter=createBrowserRouter([
@@ -39,31 +42,39 @@ function App() {
         },
         {
           path:"login",
-          element:<Login/>
+          element:<AuthenticatedUser>
+            <Login/>
+          </AuthenticatedUser>
         },
         {
           path:"my-learing",
-          element:<MyLearing/>
+          element:<ProtectedRoute><MyLearing/></ProtectedRoute>
         },
         {
           path:"course/search",
-          element:<SearchPage/>
+          element:<ProtectedRoute><SearchPage/></ProtectedRoute>
         },
         {
           path:"profile",
-          element:<Profile/>
+          element:<ProtectedRoute>
+            <Profile/>
+            </ProtectedRoute>
         },
         {
           path:"course-details/:courseId",
-          element:<CourseDetails/>
+          element:<ProtectedRoute><CourseDetails/></ProtectedRoute>
         },
         {
           path:"course-progress/:courseId",
-          element:<CourseProgress/>
+          element:<ProtectedRoute>
+            <PurchaseCourseProtectedRoute>
+               <CourseProgress/>
+            </PurchaseCourseProtectedRoute>
+           </ProtectedRoute>
         },
         {
           path:"admin",
-          element:<Sidebar/>,
+          element:<AdminRoute><Sidebar/></AdminRoute>,
           children:[
             {
             path:"dashboard",
@@ -98,7 +109,9 @@ function App() {
  
   return (
     <main>
-       <RouterProvider router={appRouter}/>
+      <ThemeProvider>
+         <RouterProvider router={appRouter}/>
+      </ThemeProvider>
     </main>
   )
 }
