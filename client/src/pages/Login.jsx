@@ -60,7 +60,6 @@ export function Login() {
 
   const handleRegistration =async(e, type)=>{
      const inputData= type =="signUp" ? signUpInput :logINInput;
-     console.log(inputData);
      const action =type=="signUp"? registerUser :loginUser;
      await action(inputData);
   }
@@ -69,8 +68,9 @@ export function Login() {
 
   useEffect(()=>{
        if (registerSuccess && registerData) {
-         toast.success(registerData?.message || "signup successfully");
-         navigate("/");
+        console.log(registerData);
+         toast.success(  "signup successfully && Please Login");
+         navigate("/login");
        }
        if (loginSuccess && loginData) {
          toast.success(loginData?.message || "login successful");

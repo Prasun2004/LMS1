@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { userLoggedIn, userLoggedout, userRegister } from "../authSlice";
+import { userLoggedIn, userLoggedout } from "../authSlice";
 
 const USER_API = "http://localhost:8080/user";
 
