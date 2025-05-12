@@ -74,11 +74,12 @@ export function Login() {
          navigate("/login");
          setSignUpInput({
            name: "",
-    email: "",
-    password: "",
+           email: "",
+           password: "",
          });
        }
        if (loginSuccess && loginData) {
+        console.log(loginSuccess,loginData);
          toast.success(loginData?.message || "login successful");
          navigate("/");
        }

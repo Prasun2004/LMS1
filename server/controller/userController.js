@@ -32,12 +32,13 @@ export const register =async (req,res)=>{
                 email,
                 password
             };
-           
+        
            return res.status(201).json({
                 data,
                 success:true,
                 message:"registration successfully completed"
             })
+          
     } catch (error) {
         console.log(error);
         return res.status(500).json({
