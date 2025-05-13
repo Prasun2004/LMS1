@@ -59,8 +59,8 @@ export function Login() {
   };
 
   const handleRegistration =async(e, type)=>{
-     const inputData= type =="signUp" ? signUpInput :logINInput;
-     const action =type=="signUp"? registerUser :loginUser;
+     const inputData= type ==="signUp" ? signUpInput :logINInput;
+     const action =type==="signUp"? registerUser :loginUser;
     
      await action(inputData);
   }
