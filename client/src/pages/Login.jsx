@@ -69,7 +69,7 @@ export function Login() {
 
   useEffect(()=>{
        console.log(registerSuccess,registerData);
-       if (registerSuccess) {
+       if (registerSuccess && registerData) {
          toast.success("signup successfully && Please Login");
          navigate("/login");
          setSignUpInput({
@@ -81,6 +81,7 @@ export function Login() {
        if (loginSuccess && loginData) {
         console.log(loginSuccess,loginData);
          toast.success(loginData?.message || "login successful");
+         alert("hi");
          navigate("/");
        }
        if (registerError) {

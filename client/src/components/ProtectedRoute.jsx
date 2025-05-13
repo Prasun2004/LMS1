@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom';
+import { toast } from 'sonner';
 
 export const  ProtectedRoute =({children}) =>{
    const {isAuthenticated} =useSelector(store=>store.auth);
@@ -13,9 +14,11 @@ export const  ProtectedRoute =({children}) =>{
 }
 
 export const  AuthenticatedUser =({children}) =>{
-   const {isAuthenticated} =useSelector(store=>store.auth);
+   const {user,isAuthenticated} =useSelector(store=>store.auth);
 
    if (isAuthenticated) {
+      toast.success(`welcome back ${user.name}`);
+       
       return <Navigate to="/"/>
    }
 
