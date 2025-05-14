@@ -119,7 +119,7 @@ export default function CourseTab() {
       category:course?.category,
       courseLevel:course?.courseLevel,
       coursePrice:course?.coursePrice,
-      courseThumbnail:""
+      courseThumbnail:course?.courseThumbnail
       })
    },[course])
 
