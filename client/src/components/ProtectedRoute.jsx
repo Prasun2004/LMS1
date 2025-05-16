@@ -15,9 +15,9 @@ export const  ProtectedRoute =({children}) =>{
 
 export const  AuthenticatedUser =({children}) =>{
    const {user,isAuthenticated} =useSelector(store=>store.auth);
-
+   console.log(user);
    if (isAuthenticated) {
-      toast.success(`welcome back ${user.name}`);
+      toast.success(`welcome back ${user?.name}`);
        
       return <Navigate to="/"/>
    }
@@ -32,7 +32,7 @@ export const  AdminRoute =({children})=>{
         return <Navigate to="/login"/>
     }
 
-    if (user?.role !== "instrutor") {
+    if (user?.role !== "instructor") {
         return <Navigate to="/"/>
     }
     return children;

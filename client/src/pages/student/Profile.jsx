@@ -145,7 +145,7 @@ const user =data && data.user;
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 my-5'>
            {
             user?.enrolledCourses.length===0 ? <h1>you have no enroll course</h1> :(
-                user.enrolledCourses.map((course,index)=><SingleCourse course={course} key={course._id}/>)
+                user?.enrolledCourses.map((course,index)=><SingleCourse course={course} key={course._id}/>)
             )
            }
         </div>
