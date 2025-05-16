@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator';
 import { useGetCourseDetailsWithStatusQuery } from '@/features/api/purchaseApi';
-import { BadgeInfo, PlayCircle } from 'lucide-react'
+import { BadgeInfo, Lock, PlayCircle } from 'lucide-react'
 import React from 'react'
 import ReactPlayer from 'react-player';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -14,7 +14,7 @@ export default function CourseDetails() {
      const navigate =useNavigate();
     const {data,isLoading,isError} =useGetCourseDetailsWithStatusQuery(courseId);
 
-   
+    const hi=true;
    
     if (isLoading) {
         return <h1>Loading....</h1>
@@ -61,7 +61,7 @@ export default function CourseDetails() {
                         <div key={index} className='flex item-center gap-3 text-sm'>
                            <span>
                             {
-                               lecture.isPreviewFree  ?( <PlayCircle/>) :(<Lock size={14}/> )
+                               lecture?.isPreviewFree  ?( <PlayCircle/>) :(<Lock/> )
                             }
                            </span>
                            <p>{lecture.lectureTitle}</p>

@@ -189,8 +189,10 @@ export const stripeWebhook = async (req, res) => {
 
   export const getAllPurchasedCourse = async (req, res) => {
     try {
+      const userId =req.id;
       const purchasedCourse = await CoursePurchase.find({
         status: "completed",
+        userId:userId,
       }).populate("courseId");
       if (!purchasedCourse) {
         return res.status(404).json({

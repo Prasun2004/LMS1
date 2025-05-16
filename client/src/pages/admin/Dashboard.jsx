@@ -15,7 +15,8 @@ export default function Dashboard() {
   if (isError) {
     return <h1 className='text-red-500'>Fail to get Purchase Course</h1>
   }
-
+  
+  console.log(data);
   const {purchasedCourse} =data || [];
 
   const courseData =purchasedCourse.map((course)=>({
