@@ -40,7 +40,7 @@ export default function LectureTab() {
             setUploadInfo(lecture.videoInfo);
         }
     },[lecture])
-   // console.log(data);
+   console.log(data);
     const fileChangeHandler=async(e)=>{
         const file =e.target.files[0];
         if (file) {

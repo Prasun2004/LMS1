@@ -67,12 +67,12 @@ export default function CourseProgress() {
 
 
   if (isLoading) {
-    alert("hi1");
+  
     return <p>Loading...</p> ;
   }
 
   if (isError) {
-    alert("hi");
+   
     return <p>Fail to get course details</p>;
   }
  

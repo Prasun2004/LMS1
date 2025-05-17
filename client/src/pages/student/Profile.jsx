@@ -16,6 +16,7 @@ import { Loader2 } from 'lucide-react'
 import SingleCourse from './SingleCourse'
 import { useLoadUserQuery, useUpdateUserMutation } from '@/features/api/authApi'
 import { toast } from 'sonner'
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select'
 
 export default function Profile() {
     const [name,setName]=useState("");
@@ -32,6 +33,10 @@ export default function Profile() {
         console.log(file);
           setPhoto(file);
        
+    }
+
+    const selectedCategory =(val)=>{
+      setRole(val);
     }
 
     const updateUserhandler= async ()=>{
@@ -115,7 +120,18 @@ const user =data && data.user;
             <Label htmlFor="role" className="text-right">
                Role
             </Label>
-            <Input id="role" type="text" value={role}  className="col-span-3" placeholder="instructor/student" onChange={(e)=>setRole(e.target.value)}/>
+            <Select id="role" onValueChange={selectedCategory}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Select a category" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Category</SelectLabel>
+                <SelectItem value="student">Student</SelectItem>
+                <SelectItem value="instructor">Instructor</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="username" className="text-right">

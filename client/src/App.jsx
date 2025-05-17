@@ -67,9 +67,9 @@ function App() {
         {
           path:"course-progress/:courseId",
           element:<ProtectedRoute>
-            {/* <PurchaseCourseProtectedRoute> */}
+            <PurchaseCourseProtectedRoute>
                <CourseProgress/>
-            {/* </PurchaseCourseProtectedRoute> */}
+            </PurchaseCourseProtectedRoute>
            </ProtectedRoute>
         },
         {

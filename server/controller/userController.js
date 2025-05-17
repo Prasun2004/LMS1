@@ -128,15 +128,46 @@ export const updateProfile =async(req,res)=>{
                 success:false
             })
         }
-
+       
         if (user.photoUrl) {
             const publicId=user.photoUrl.split("/").pop().split(".")[0];
             
             deleteMedia(publicId);
         }
-        const cloudResponse= await uploadMedia(profilePhoto.path);
-        const photoUrl =cloudResponse.secure_url;
+        
       
+        if (!profilePhoto) {
+        const updateData ={name,role};
+        const updateUser=await User.findByIdAndUpdate(userId,updateData,{new:true}).select("-password");
+       
+        return res.status(200).json({
+            message :"user profile updated without photo",
+            success:true,
+            updateUser
+        })
+        } else if (!name) {
+            const cloudResponse= await uploadMedia(profilePhoto.path);
+        const photoUrl =cloudResponse.secure_url;
+             const updateData ={photoUrl,role};
+        const updateUser=await User.findByIdAndUpdate(userId,updateData).select("-password");
+       
+        return res.status(200).json({
+            message :"user profile updated without name",
+            success:true,
+            updateUser
+        })
+        } else if (!role) {
+            const cloudResponse= await uploadMedia(profilePhoto.path);
+        const photoUrl =cloudResponse.secure_url;
+        const updateData ={photoUrl,name};
+        const updateUser=await User.findByIdAndUpdate(userId,updateData).select("-password");
+       
+        return res.status(200).json({
+            message :"user profile updated without role",
+            success:true,
+            updateUser
+        })
+        }
         const updateData ={name,photoUrl,role};
         const updateUser=await User.findByIdAndUpdate(userId,updateData,{new:true}).select("-password");
        

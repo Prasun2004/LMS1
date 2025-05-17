@@ -58,7 +58,7 @@ export const createCheeckoutSession =async(req,res)=>{
         },
       });
 
-
+   
   
       if (!session.url) {
         return res
@@ -82,9 +82,9 @@ export const createCheeckoutSession =async(req,res)=>{
 }
 
 export const stripeWebhook = async (req, res) => {
+  console.log("hi");
+  
     let event;
-    
-   
     try {
 
       const payloadString = JSON.stringify(req.body, null, 2);
@@ -99,6 +99,7 @@ export const stripeWebhook = async (req, res) => {
       });
   
       event = stripe.webhooks.constructEvent(payloadString, header, secret);
+      console.log(event.type);
     } catch (error) {
       console.error("Webhook error:", error.message);
       return res.status(400).send(`Webhook error: ${error.message}`);

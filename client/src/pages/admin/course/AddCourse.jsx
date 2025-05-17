@@ -30,7 +30,7 @@ export default function AddCourse() {
   }
 
   const selectedCategory =(value)=>{
-    setCategory(value)
+    setCategory(value);
   }
 
   useEffect(()=>{

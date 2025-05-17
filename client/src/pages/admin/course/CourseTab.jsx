@@ -42,7 +42,7 @@ export default function CourseTab() {
 
    const [publishCourse,{}]=usePublishCourseMutation();
 
-   //console.log(coursebyData);
+   console.log(coursebyData);
 
    const changeEventHandler=(e)=>{
      const {name,value} =e.target;
@@ -182,7 +182,7 @@ export default function CourseTab() {
            <div className='flex items-center gap-5'>
             <div>
             <Label>Category</Label>
-          <Select onValueChange={selectCategory}>
+          <Select value={input.category} onValueChange={selectCategory}>
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Select a category" />
             </SelectTrigger>
@@ -211,7 +211,7 @@ export default function CourseTab() {
             </div>
             <div>
               <Label>Course Level</Label>
-                        <Select  onValueChange={selectCourse}>
+                        <Select value={input.courseLevel} onValueChange={selectCourse}>
                           <SelectTrigger className="w-[180px]">
                             <SelectValue placeholder="Select a category" />
                           </SelectTrigger>
@@ -246,7 +246,7 @@ export default function CourseTab() {
                onChange={selectFile}
               />
               {
-                image  && (
+                image || input.courseThumbnail  && (
                   <img src={image} className='e-64 my-2'/>
                 )
               }
