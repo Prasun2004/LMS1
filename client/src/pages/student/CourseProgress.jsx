@@ -26,12 +26,12 @@ export default function CourseProgress() {
     if (completedSucess) {
       refetch();
      console.log(markCompleteData);
-      toast.success("completed sucessfully")
+      // toast.success("completed sucessfully")
     }
     if (inCompleteCourse) {
       refetch();
      console.log(markinCompleteData);
-      toast.success("incomplete sucessfully");
+      // toast.success("incomplete sucessfully");
     }
 
   },[completedSucess,inCompleteSucess])

@@ -1,4 +1,5 @@
 import { useGetCourseDetailsWithStatusQuery } from "@/features/api/purchaseApi";
+import CourseProgress from "@/pages/student/CourseProgress";
 import { useParams, Navigate } from "react-router-dom" ;
 
 
@@ -9,7 +10,7 @@ const PurchaseCourseProtectedRoute=({Children})=>{
     if (isLoading) {
         return <p>Loading....</p>
     }
-    return data?.purchased ? Children : <Navigate to={`/course-details/${courseId}`}/> 
+    return data?.purchased ? <CourseProgress/> : <Navigate to={`/course-details/${courseId}`}/> 
 }
 
 export default PurchaseCourseProtectedRoute;

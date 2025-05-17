@@ -26,7 +26,7 @@ export const createCheeckoutSession =async(req,res)=>{
            courseId,
            userId,
            amount:course.coursePrice,
-           status:"pending"
+           status:"completed"
        });
       
        
@@ -58,7 +58,19 @@ export const createCheeckoutSession =async(req,res)=>{
         },
       });
 
-   
+       // Update user's enrolledCourses
+        await User.findByIdAndUpdate(
+          newPurchase.userId,
+          { $addToSet: { enrolledCourses: purchase.courseId._id } }, // Add course ID to enrolledCourses
+          { new: true }
+        );
+  
+        // Update course to add user ID to enrolledStudents
+        await Course.findByIdAndUpdate(
+          newPurchase.courseId._id,
+          { $addToSet: { enrolledStudents: purchase.userId } }, // Add user ID to enrolledStudents
+          { new: true }
+        );
   
       if (!session.url) {
         return res
@@ -175,6 +187,7 @@ export const stripeWebhook = async (req, res) => {
           };
 
           const purchase =purchased.status;
+         
            let change;
           if (purchase === "completed") {
               change =true;
