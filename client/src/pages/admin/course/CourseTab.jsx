@@ -63,7 +63,7 @@ export default function CourseTab() {
         setInput({...input, courseThumbnail:file});
         const fileReader =new FileReader();
         fileReader.onloadend =()=>{
-           setImage(fileReader.result);
+           setImage(fileReader.result || input.courseThumbnail);
         }
         fileReader.readAsDataURL(file);
      }
@@ -246,7 +246,7 @@ export default function CourseTab() {
                onChange={selectFile}
               />
               {
-                image || input.courseThumbnail  && (
+                image   && (
                   <img src={image} className='e-64 my-2'/>
                 )
               }

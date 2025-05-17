@@ -26,7 +26,7 @@ export const createCheeckoutSession =async(req,res)=>{
            courseId,
            userId,
            amount:course.coursePrice,
-           status:"completed"
+           status:"pending"
        });
       
        
@@ -58,19 +58,6 @@ export const createCheeckoutSession =async(req,res)=>{
         },
       });
 
-       // Update user's enrolledCourses
-        await User.findByIdAndUpdate(
-          newPurchase.userId,
-          { $addToSet: { enrolledCourses: purchase.courseId._id } }, // Add course ID to enrolledCourses
-          { new: true }
-        );
-  
-        // Update course to add user ID to enrolledStudents
-        await Course.findByIdAndUpdate(
-          newPurchase.courseId._id,
-          { $addToSet: { enrolledStudents: purchase.userId } }, // Add user ID to enrolledStudents
-          { new: true }
-        );
   
       if (!session.url) {
         return res
@@ -94,7 +81,7 @@ export const createCheeckoutSession =async(req,res)=>{
 }
 
 export const stripeWebhook = async (req, res) => {
-  console.log("hi");
+  
   
     let event;
     try {
@@ -147,7 +134,7 @@ export const stripeWebhook = async (req, res) => {
         }
   
         await purchase.save();
-  
+        console.log(purchase);
         // Update user's enrolledCourses
         await User.findByIdAndUpdate(
           purchase.userId,
@@ -186,18 +173,19 @@ export const stripeWebhook = async (req, res) => {
               })
           };
 
-          const purchase =purchased.status;
+          // const purchase =purchased.status;
          
-           let change;
-          if (purchase === "completed") {
-              change =true;
-          }else{
-            change =false;
-          }
+          //  let change;
+          //  console.log(purchase);
+          // if (purchase == "completed") {
+          //     change =true;
+          // }else{
+          //   change =false;
+          // }
 
           return res.status(200).json({
              course,
-             purchased: change , // true if purchsed other false
+             purchased: !!purchased , // true if purchsed other false
              message:"course found successfully"
           });
 
@@ -212,6 +200,7 @@ export const stripeWebhook = async (req, res) => {
   export const getAllPurchasedCourse = async (req, res) => {
     try {
       const userId =req.id;
+      console.log(userId);
       const purchasedCourse = await CoursePurchase.find({
         status: "completed",
         userId:userId,
