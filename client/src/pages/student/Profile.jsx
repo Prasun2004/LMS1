@@ -115,7 +115,7 @@ const user =data && data.user;
             <Label htmlFor="role" className="text-right">
                Role
             </Label>
-            <Input id="role" type="text" value={role}  className="col-span-3" onChange={(e)=>setRole(e.target.value)}/>
+            <Input id="role" type="text" value={role}  className="col-span-3" placeholder="instructor/student" onChange={(e)=>setRole(e.target.value)}/>
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="username" className="text-right">

@@ -15,7 +15,7 @@ export default function CourseDetails() {
     const {data,isLoading,isError} =useGetCourseDetailsWithStatusQuery(courseId);
 
     const hi=true;
-   
+     console.log(data);
     if (isLoading) {
         return <h1>Loading....</h1>
     }

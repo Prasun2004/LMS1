@@ -54,7 +54,7 @@ export default function LectureTab() {
                     }
                 });
                 if (res.data.success) {
-                   // console.log(res);
+                   console.log(res.data.success);
                     setUploadInfo({videoUrl:res.data.data.url,publicId:res.data.data.public_id});
                     setBtnDisable(false);
                     toast.success("video upload sucessful");

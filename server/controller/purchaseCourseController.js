@@ -106,7 +106,7 @@ export const stripeWebhook = async (req, res) => {
   
     // Handle the checkout session completed event
     // event.type === "checkout.session.completed" orginal if condition
-    if (true) {
+    if (event.type === "checkout.session.completed") {
       console.log("check session complete is called");
   
       try {

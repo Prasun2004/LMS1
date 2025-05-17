@@ -20,6 +20,7 @@ export default function CourseProgress() {
   const [inCompleteCourse,{data:markinCompleteData,isSuccess:inCompleteSucess}]=useInCompleteCourseMutation();
 
  
+ console.log(data);
 
   useEffect(()=>{
     if (completedSucess) {
