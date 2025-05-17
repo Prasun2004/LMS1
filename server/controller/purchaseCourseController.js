@@ -173,9 +173,17 @@ export const stripeWebhook = async (req, res) => {
               })
           };
 
+          const purchase =purchased.status;
+           let change;
+          if (purchase === "completed") {
+              change =true;
+          }else{
+            change =false;
+          }
+
           return res.status(200).json({
              course,
-             purchased: !!purchased , // true if purchsed other false
+             purchased: change , // true if purchsed other false
              message:"course found successfully"
           });
 

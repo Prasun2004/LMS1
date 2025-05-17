@@ -13,7 +13,7 @@ export default function CourseProgress() {
   const params =useParams();
 
   const {courseId} = params;
-
+  console.log(courseId);
   const {data,isLoading,isError,refetch} = useGetCourseProgressQuery(courseId);
   const [updateLectureProgress] =useUpdateLectureProgressMutation();
   const [completeCourse,{data:markCompleteData, isSuccess:completedSucess}] =useCompleteCourseMutation();
@@ -67,10 +67,12 @@ export default function CourseProgress() {
 
 
   if (isLoading) {
+    alert("hi1");
     return <p>Loading...</p> ;
   }
 
   if (isError) {
+    alert("hi");
     return <p>Fail to get course details</p>;
   }
  
