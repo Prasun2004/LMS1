@@ -68,7 +68,7 @@ export function Login() {
   
 
   useEffect(()=>{
-       console.log(registerSuccess,registerData);
+         console.log(loginSuccess,loginData);
        if (registerSuccess && registerData) {
          toast.success("signup successfully && Please Login");
          navigate("/login");

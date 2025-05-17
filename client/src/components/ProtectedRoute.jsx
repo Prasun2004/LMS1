@@ -15,7 +15,7 @@ export const  ProtectedRoute =({children}) =>{
 
 export const  AuthenticatedUser =({children}) =>{
    const {user,isAuthenticated} =useSelector(store=>store.auth);
-   console.log(user);
+   
    if (isAuthenticated) {
       toast.success(`welcome back ${user?.name}`);
        
