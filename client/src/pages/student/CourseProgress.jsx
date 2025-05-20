@@ -5,13 +5,13 @@ import { useCompleteCourseMutation, useGetCourseProgressQuery, useInCompleteCour
 import { CheckCircle, CirclePlay } from 'lucide-react'
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'sonner'
 
 export default function CourseProgress() {
 
   const params =useParams();
-
+  const navigate=useNavigate("");
   const {courseId} = params;
   console.log(courseId);
   const {data,isLoading,isError,refetch} = useGetCourseProgressQuery(courseId);
@@ -64,7 +64,9 @@ export default function CourseProgress() {
    }
 
    
-
+   const handlegame=()=>{
+      navigate(`/course-progress/${courseId}/game`);
+   }
 
   if (isLoading) {
   
@@ -78,9 +80,10 @@ export default function CourseProgress() {
  
   return (
     <div className='max-w-7xl mx-auto p-4'>
-      <div className='flex justify-between mb-4'>
+      <div className='flex justify-between mb-4' >
         <h1 className='text-2xl font-bold'>{data?.data?.courseDetails?.courseTitle}</h1>
-        <Button onClick={data?.data?.completed ? handleinCompleteCourse :handleCompleteCourse} variant={data?.data?.completed ? "outline" :" default"}>
+         <div>
+             <Button onClick={data?.data?.completed ? handleinCompleteCourse :handleCompleteCourse} variant={data?.data?.completed ? "outline" :" default"}>
           {
              data?.data?.completed ? <div className='flex items-center'>
                <CheckCircle className='h-4 w-4 mr-2'/> 
@@ -89,7 +92,16 @@ export default function CourseProgress() {
              "Mark as Completed"
           }
           </Button>
+         </div>
+        
       </div>
+      <div className='flex mb-4' style={{justifyContent:"flex-end"}} >
+        {
+              data?.data?.completed &&  <Button onClick={handlegame}>Game</Button>
+        }
+         
+      </div>
+      
       <div className='flex flex-col md:flex-row hap-6'>
         <div className='flex-1 md:w-3/5 h-fit rounded-lg shadow-lg p-4'>
         <div>

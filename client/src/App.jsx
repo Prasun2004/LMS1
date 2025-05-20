@@ -24,6 +24,7 @@ import SearchPage from './pages/student/SearchPage'
 import { AdminRoute, AuthenticatedUser, ProtectedRoute } from './components/ProtectedRoute'
 import PurchaseCourseProtectedRoute from './components/PurchaseCourseProtected'
 import { ThemeProvider } from './components/ThemeProvider'
+import Game from './pages/student/Game'
 
 function App() {
   const appRouter=createBrowserRouter([
@@ -70,6 +71,12 @@ function App() {
             <PurchaseCourseProtectedRoute>
                <CourseProgress/>
             </PurchaseCourseProtectedRoute>
+           </ProtectedRoute>
+        },
+        {
+          path:"course-progress/:courseId/game",
+          element:<ProtectedRoute>
+               <Game/>
            </ProtectedRoute>
         },
         {

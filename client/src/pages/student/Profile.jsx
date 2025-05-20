@@ -27,7 +27,8 @@ export default function Profile() {
 
     const [updateUser,{data:updateData,isLoading:updateisLoading,isError,error,isSuccess}] = useUpdateUserMutation();
 
-   
+    console.log(data);
+
     const onchangehandler =(e)=>{
         const file=e.target.files?.[0];
         console.log(file);
@@ -41,13 +42,14 @@ export default function Profile() {
 
     const updateUserhandler= async ()=>{
          
-
+          
          const formData=new FormData();
          formData.append("name",name);
          formData.append("profilePhoto",photo);
          formData.append("role",role);
-
+         
          await updateUser(formData);
+         
     }
    
     useEffect(()=>{

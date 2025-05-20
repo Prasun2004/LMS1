@@ -47,8 +47,8 @@ export default function Filter({handleFilterChange}) {
             <SelectContent>
                 <SelectGroup>
                 <SelectLabel>Sort By Price</SelectLabel>
-                <SelectItem value='low'>Low to High</SelectItem>
-                <SelectItem value='high'>High to Low</SelectItem>
+                <SelectItem value='low'>High to Low</SelectItem>
+                <SelectItem value='high'>Low to High</SelectItem>
                 </SelectGroup>
             </SelectContent>
           </Select>

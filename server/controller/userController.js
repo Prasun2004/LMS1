@@ -136,20 +136,42 @@ export const updateProfile =async(req,res)=>{
         }
         
       
-        if (!profilePhoto) {
-        const updateData ={name,role};
-        const updateUser=await User.findByIdAndUpdate(userId,updateData,{new:true}).select("-password");
-       
-        return res.status(200).json({
+        if (!profilePhoto ) {
+        if (name && role) {
+             const updateData ={name,role};
+             const updateUser=await User.findByIdAndUpdate(userId,updateData,{new:true}).select("-password");
+             return res.status(200).json({
             message :"user profile updated without photo",
             success:true,
             updateUser
         })
+        }
+        else if (name) {
+             const updateData ={name};
+             const updateUser=await User.findByIdAndUpdate(userId,updateData,{new:true}).select("-password");
+             return res.status(200).json({
+            message :"user profile updated without photo",
+            success:true,
+            updateUser
+        })
+        }
+        else if (role) {
+            const updateData ={role};
+             const updateUser=await User.findByIdAndUpdate(userId,updateData,{new:true}).select("-password");
+             return res.status(200).json({
+            message :"user profile updated without photo",
+            success:true,
+            updateUser
+        })
+        }
+       
+     
+        
         } else if (!name) {
             const cloudResponse= await uploadMedia(profilePhoto.path);
         const photoUrl =cloudResponse.secure_url;
              const updateData ={photoUrl,role};
-        const updateUser=await User.findByIdAndUpdate(userId,updateData).select("-password");
+        const updateUser=await User.findByIdAndUpdate(userId,updateData,{new:true}).select("-password");
        
         return res.status(200).json({
             message :"user profile updated without name",
@@ -157,11 +179,11 @@ export const updateProfile =async(req,res)=>{
             updateUser
         })
         } else if (!role) {
-            const cloudResponse= await uploadMedia(profilePhoto.path);
+        const cloudResponse= await uploadMedia(profilePhoto.path);
         const photoUrl =cloudResponse.secure_url;
         const updateData ={photoUrl,name};
-        const updateUser=await User.findByIdAndUpdate(userId,updateData).select("-password");
-       
+        const updateUser=await User.findByIdAndUpdate(userId,updateData,{new:true}).select("-password");
+        
         return res.status(200).json({
             message :"user profile updated without role",
             success:true,

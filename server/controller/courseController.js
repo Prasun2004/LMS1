@@ -73,7 +73,7 @@ export const  searchCourse =async(req,res)=>{
         }
         const sortOptions={};
        
-        if (sortByPrice ==="low") {
+        if (sortByPrice === "low") {
             sortOptions.coursePrice= -1; // sort by price in asending order
         } else if (sortByPrice ==="high") {
             sortOptions.coursePrice = 1 //decending order
@@ -84,6 +84,7 @@ export const  searchCourse =async(req,res)=>{
          return res.status(200).json({
             success:true,
             courses:courses || [],
+             price:courses.coursePrice,
             message:"sucessful find search course"
          })
     } catch (error) {
