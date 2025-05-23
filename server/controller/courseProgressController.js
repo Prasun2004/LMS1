@@ -154,3 +154,35 @@ export const  markAsIncompleted =async(req,res)=>{
         }) 
     }
 }
+
+export const Updatescore =async (req,res)=>{
+    try {
+        const userId =req.id;
+
+        const {courseId} =req.params;
+        const score=req.body;
+        console.log(score.score);
+
+        const courseProgress = await CourseProgress.findOne({courseId,userId});
+
+        if (!courseProgress) {
+            return res.status(404).json({
+                message:"course progress not found for update score"
+            });
+        }
+        courseProgress.score=score.score;
+        console.log(courseProgress.score);
+
+        res.status(200).json({
+            message:"score update successfully",
+            courseProgress,
+             success:true
+        })
+
+    } catch (error) {
+         console.log(error);
+        return res.status(500).json({
+          message:"fail to update lecture score"
+        }) 
+    }
+}

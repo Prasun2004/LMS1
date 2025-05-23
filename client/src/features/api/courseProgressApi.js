@@ -33,8 +33,15 @@ export const courseProgressApi =createApi({
                 method:"POST"
             }),
         }),
+        changeScore: builder.mutation({
+            query:({courseId,score})=>({
+                url:`${courseId}/game`,
+                method:"POST",
+                body:{score}
+            }),
+        }),
     }),
 });
 
-export const {useCompleteCourseMutation,useGetCourseProgressQuery,useUpdateLectureProgressMutation,useInCompleteCourseMutation}=courseProgressApi
+export const {useCompleteCourseMutation,useGetCourseProgressQuery,useUpdateLectureProgressMutation,useInCompleteCourseMutation,useChangeScoreMutation}=courseProgressApi
 
