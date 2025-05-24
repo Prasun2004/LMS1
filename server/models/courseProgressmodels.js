@@ -23,6 +23,10 @@ const courseProgressSchema =new mongoose.Schema({
     score:{
        type:String
     },
+    pass:{
+        type:Boolean,
+        default:false
+    },
     lectureProgress:[lectureProgressSchema]
 });
 

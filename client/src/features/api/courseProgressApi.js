@@ -40,8 +40,14 @@ export const courseProgressApi =createApi({
                 body:{score}
             }),
         }),
+        getScore: builder.query({
+            query:(courseId)=>({
+                url:`/${courseId}/game`,
+                method:"GET"
+            }),
+        }),
     }),
 });
 
-export const {useCompleteCourseMutation,useGetCourseProgressQuery,useUpdateLectureProgressMutation,useInCompleteCourseMutation,useChangeScoreMutation}=courseProgressApi
+export const {useCompleteCourseMutation,useGetCourseProgressQuery,useUpdateLectureProgressMutation,useInCompleteCourseMutation,useChangeScoreMutation,useGetScoreQuery}=courseProgressApi
 

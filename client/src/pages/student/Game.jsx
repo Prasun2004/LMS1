@@ -1,4 +1,4 @@
-import { useChangeScoreMutation, useGetCourseProgressQuery } from "@/features/api/courseProgressApi.js";
+import { useChangeScoreMutation, useGetCourseProgressQuery, useGetScoreQuery } from "@/features/api/courseProgressApi.js";
 import React, { useEffect, useState } from "react";
 import {  useNavigate, useParams } from "react-router-dom";
 
@@ -61,10 +61,45 @@ export default function Game() {
    const params =useParams();
   const navigate=useNavigate();
   const {courseId} = params;
+  const [timeLeft, setTimeLeft] = useState(600); // 600 seconds = 10 minutes
 
+ useEffect(() => {
+  if (score !== null) return; // Stop the timer after submission
+
+  const timer = setInterval(() => {
+    setTimeLeft((prev) => {
+      if (prev <= 1) {
+        clearInterval(timer);
+        handleSubmitAuto(); // Auto submit
+        return 0;
+      }
+      return prev - 1;
+    });
+  }, 1000);
+
+  return () => clearInterval(timer); // Cleanup
+}, [score]);
+
+const formatTime = (seconds) => {
+  const m = Math.floor(seconds / 60)
+    .toString()
+    .padStart(2, "0");
+  const s = (seconds % 60).toString().padStart(2, "0");
+  return `${m}:${s}`;
+};
+
+const handleSubmitAuto = async () => {
+  let score = 0;
+  quizQuestions.forEach((q, i) => {
+    if (answers[i] === q.answer) score++;
+  });
+  await changeScore({ courseId, score });
+  setScore(score);
+};
    const [changeScore,{data, isSuccess,error}] =useChangeScoreMutation();
+   const {data:scoredata,isLoading,isSuccess:ScoreSucess,isError} =useGetScoreQuery(courseId);
   
-   console.log(fetchData);
+   console.log(scoredata);
    console.log(data,isSuccess);
   const handleOptionChange = (qIndex, selectedOption) => {
     setAnswers({ ...answers, [qIndex]: selectedOption });
@@ -94,6 +129,10 @@ export default function Game() {
       <h1 className="text-3xl font-bold text-center text-red-600 mb-6">
         You have to pass at least 80%
       </h1>
+      <div className="text-center text-xl font-bold text-blue-700">
+  Time Left: {formatTime(timeLeft)}
+</div>
+
 
       <form className="space-y-8">
         {quizQuestions.map((q, index) => (
@@ -135,7 +174,7 @@ export default function Game() {
             )}
           </div>
         )}
-         {score >= 8 || fetchData?.score1>=8 && (
+         {score >= 8 || scoredata?.score>=8 && (
           <div className="mt-6 text-center">
             <button
               onClick={handleCertificateClick}
