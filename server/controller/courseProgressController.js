@@ -170,11 +170,13 @@ export const Updatescore =async (req,res)=>{
                 message:"course progress not found for update score"
             });
         }
+
+       
         courseProgress.score=score.score;
         if (score.score>=8) {
             courseProgress.pass=true;
         }
-        console.log(courseProgress.score);
+        await courseProgress.save();
 
         res.status(200).json({
             message:"score update successfully",

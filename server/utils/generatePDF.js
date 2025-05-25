@@ -33,7 +33,7 @@ const generateCertificatePDF = (username, course, certificateId) => {
   doc.fontSize(16).text('Company: LMS', 100, 410);
   doc.text('CEO: Prasun Kumar', 100, 440);
 
-  doc.text(`Certificate ID: ${certificateId}`, { align: 'center' } ,100,470);
+  doc.text(`Certificate ID: ${certificateId}`, { align: 'center' } ,100,500);
   doc.end();
 
   return filePath;

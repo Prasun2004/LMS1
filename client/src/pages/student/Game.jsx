@@ -120,9 +120,12 @@ const handleSubmitAuto = async () => {
    
   };
   
-  const handleCertificateClick =()=>{
+  const handleCertificateClick =(e)=>{
+      e.preventDefault();
      navigate(`/course-progress/${courseId}/cirtificate`);
   }
+
+  console.log(score);
 
   return (
     <div className="max-w-4xl mx-auto mt-10 p-6 bg-white rounded-2xl shadow-md">
@@ -174,7 +177,7 @@ const handleSubmitAuto = async () => {
             )}
           </div>
         )}
-         {score >= 8 && (
+         {(score >= 8 || scoredata?.courseProgress?.pass)  && (
           <div className="mt-6 text-center">
             <button
               onClick={handleCertificateClick}
