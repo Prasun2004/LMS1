@@ -174,7 +174,7 @@ const handleSubmitAuto = async () => {
             )}
           </div>
         )}
-         {score >= 8 || scoredata?.score>=8 && (
+         {score >= 8 && (
           <div className="mt-6 text-center">
             <button
               onClick={handleCertificateClick}

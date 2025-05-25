@@ -14,6 +14,10 @@ dist-ssr
 uploads
 .env
 
+certs/*
+
+.gitignore
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
