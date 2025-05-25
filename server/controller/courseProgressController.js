@@ -161,7 +161,7 @@ export const Updatescore =async (req,res)=>{
 
         const {courseId} =req.params;
         const score=req.body;
-        console.log(score.score);
+       
 
         const courseProgress = await CourseProgress.findOne({courseId,userId});
 
