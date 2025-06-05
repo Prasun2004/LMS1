@@ -5,15 +5,16 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { useEditCourseMutation, useGetCourseByIdQuery, usePublishCourseMutation } from '@/features/api/courseApi'
+import JoditEditor from 'jodit-react'
 import { Loader2 } from 'lucide-react'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'sonner'
 
 export default function CourseTab() {
    const isPublish =true;
    //const isLoading=false;
-
+   const editor=useRef(null);
    const params =useParams();
    const courseId=params.courseId;
    
@@ -22,12 +23,11 @@ export default function CourseTab() {
    //console.log(data);
 
    
-   
+   const [description,setDescription] =useState("");
 
    const [input,setInput]=useState({
       courseTitle:"",
       subTitle:"",
-      description:"",
       category:"",
       courseLevel:"",
       coursePrice:"",
@@ -68,14 +68,14 @@ export default function CourseTab() {
         fileReader.readAsDataURL(file);
      }
    };
-
+   
    const updateCourseHandler = async()=>{
-     
+    
     const formData=new FormData();
      
     formData.append("courseTitle", input.courseTitle);
     formData.append("subTitle", input.subTitle);
-    formData.append("description", input.description);
+    formData.append("description", description);
     formData.append("category", input.category);
     formData.append("courseLevel", input.courseLevel);
     formData.append("coursePrice", input.coursePrice);
@@ -96,7 +96,7 @@ export default function CourseTab() {
    },[isSuccess,error])
 
    const course =coursebyData?.course;
-  // console.log(course);
+   console.log(course?.description);
 
    const publishStatusHandler=async(action)=>{
         try {
@@ -171,13 +171,26 @@ export default function CourseTab() {
            </div>
            <div>
            <Label>Description</Label>
-             <Input
+             {/* <Input
               type='text'
               name='description'
               value={input.description}
               onChange={changeEventHandler}
               placeholder="ex. fullstack developer"
+             /> */}
+             <JoditEditor
+              ref={editor}
+              value={description}
+              onChange={newContent=>setDescription(newContent)}
              />
+              {(course?.description || description) && (
+        <div className="mt-6" >
+          <div
+            className="border p-4 rounded prose max-w-none"
+            dangerouslySetInnerHTML={{ __html: course?.description || description }}
+          />
+        </div>
+      )}
            </div>
            <div className='flex items-center gap-5'>
             <div>
