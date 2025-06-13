@@ -26,6 +26,7 @@ import PurchaseCourseProtectedRoute from './components/PurchaseCourseProtected'
 import { ThemeProvider } from './components/ThemeProvider'
 import Game from './pages/student/Game'
 import Cirtificate from './pages/student/Cirtificate'
+import AddQuiz from './pages/admin/lectures/AddQuiz'
 
 function App() {
   const appRouter=createBrowserRouter([
@@ -109,6 +110,10 @@ function App() {
             {
               path:"course/:courseId/lecture",
               element:<CreateLecture/>
+            },
+                        {
+              path:"course/:courseId/lecture/addquiz",
+              element:<AddQuiz/>
             },
             {
               path:"course/:courseId/lecture/:lectureId",

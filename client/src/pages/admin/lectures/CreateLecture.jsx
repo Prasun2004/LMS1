@@ -27,6 +27,10 @@ export default function CreateLecture() {
          await createLecture({lectureTitle,courseId});
      } 
 
+     const gotoquiz =()=>{
+      navigate("addquiz")
+     }
+
      useEffect(()=>{
         if (isSuccess) {
            // console.log(isLoading);
@@ -73,6 +77,9 @@ export default function CreateLecture() {
             ) : (
               "Create Lecture"
             )}
+          </Button>
+          <Button onClick={gotoquiz}>
+            Go to Quiz
           </Button>
         </div>
         <div className="mt-24">
