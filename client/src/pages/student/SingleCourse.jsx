@@ -30,7 +30,7 @@ export default function SingleCourse({course}) {
         </Badge>
         </div>
         <div className='text-lg font-bold'>
-            <span>${course.coursePrice}</span>
+            <span>₹{course.coursePrice}</span>
         </div>
       </CardContent>
     </Card>

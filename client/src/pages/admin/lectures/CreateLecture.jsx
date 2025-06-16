@@ -27,9 +27,9 @@ export default function CreateLecture() {
          await createLecture({lectureTitle,courseId});
      } 
 
-     const gotoquiz =()=>{
-      navigate("addquiz")
-     }
+    //  const gotoquiz =()=>{
+    //   navigate("addquiz")
+    //  }
 
      useEffect(()=>{
         if (isSuccess) {

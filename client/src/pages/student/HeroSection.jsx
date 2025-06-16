@@ -19,7 +19,7 @@ export default function HeroSection() {
     <div className='bg-gradient-to-r from-blue-500 to bg-indigo-600 dark:from-gray-800 dark:to-gray-900 py-24 px-4 text-center'>
      <div className='max-w 3xl mx-auto'>
        <h1 className='text-white text-4xl font-bold mb-4'>Find the best course</h1>
-       <p className='text-gray-200 dark:text-gray-400 mb-8'>ygjukl;ojiuygtguiophgjkopkiuygfgthujiokpkiuhgyfhjuiophgu</p>
+       <p className='text-gray-200 dark:text-gray-400 mb-8'>Browse courses, learn at your pace, and track your progress easily</p>
        <form onSubmit={searchHandler} className='flex items-center bg-white dark:bg-gray-800 rounded-full shadow-lg overflow-hidden max-w xl mx-auto mb-6'>
         <Input
          type="text"
