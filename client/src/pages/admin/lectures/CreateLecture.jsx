@@ -55,7 +55,7 @@ export default function CreateLecture() {
       </div>
       <div className="space-y-4">
         <div className="">
-          <Label>Title</Label>
+          <Label className="mt-5 mb-3">Title</Label>
           <Input
             type="text"
             name="courseTitle"

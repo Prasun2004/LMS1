@@ -140,17 +140,17 @@ const handleSubmitAuto = async () => {
       <form className="space-y-8">
         {quizQuestions.map((q, index) => (
           <div key={index}>
-            <h2 className="font-semibold mb-2">{q.question}</h2>
+            <h2 className="font-semibold mb-2 dark:text-black">{q.question}</h2>
             <div className="space-y-1">
               {q.options.map((option, i) => (
-                <label key={i} className="block">
+                <label key={i} className="block dark:text-black">
                   <input
                     type="radio"
                     name={`question-${index}`}
                     value={option}
                     checked={answers[index] === option}
                     onChange={() => handleOptionChange(index, option)}
-                    className="mr-2"
+                    className="mr-2 dark:text-black"
                   />
                   {option}
                 </label>

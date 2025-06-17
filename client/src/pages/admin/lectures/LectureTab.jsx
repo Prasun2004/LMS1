@@ -117,7 +117,7 @@ export default function LectureTab() {
         </CardHeader>
         <CardContent>
             <div>
-                <Label>Title</Label>
+                <Label className="mt-5 mb-3">Title</Label>
                  <Input
                  type='text'
                   placeholder="ex. Introduction"
@@ -126,7 +126,7 @@ export default function LectureTab() {
                  />
             </div>
             <div className='my-5'>
-            <Label>Video<span className='text-red-500'>*</span></Label>
+            <Label className="mt-5 mb-3">Video<span className='text-red-500'>*</span></Label>
                  <Input
                  type='file'
                  accept='video/*'

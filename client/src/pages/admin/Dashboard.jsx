@@ -1,10 +1,29 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { useGetPublishedCourseQuery } from '@/features/api/courseApi'
 import { useGetPurchaseCourseQuery } from '@/features/api/purchaseApi'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 
 export default function Dashboard() {
+  const [isDark, setIsDark] = useState(false);
+
+   useEffect(() => {
+    // Check on load
+    const checkDark = () =>
+      setIsDark(document.documentElement.classList.contains("dark"));
+
+    checkDark();
+
+    // Optional: Listen for theme change
+    const observer = new MutationObserver(checkDark);
+    observer.observe(document.documentElement, { attributes: true });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const textColor = isDark ? "#ffffff" : "#1f2937"; // white or slate-800
+  const gridColor = isDark ? "#4b5563" : "#e0e0e0";  // gray-600 or light grid
+  const lineColor = "#4a90e2";
 
   const {data,isSuccess,isError,isLoading}=useGetPurchaseCourseQuery();
 
@@ -16,7 +35,7 @@ export default function Dashboard() {
     return <h1 className='text-red-500'>Fail to get Purchase Course</h1>
   }
   
-  console.log(data);
+  
   const {purchasedCourse} =data || [];
 
   const courseData =purchasedCourse.map((course)=>({
@@ -48,32 +67,35 @@ export default function Dashboard() {
       {/* Course Prices Card */}
       <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300 col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-4">
         <CardHeader>
-          <CardTitle className="text-xl font-semibold text-gray-700">
+          <CardTitle className="text-xl font-semibold text-gray-700 dark:text-white">
             Course Prices
           </CardTitle>
         </CardHeader>
         <CardContent>
           <ResponsiveContainer width="100%" height={250}>
-            <LineChart data={courseData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
-              <XAxis
-                dataKey="name"
-                stroke="#6b7280"
-                angle={-30} // Rotated labels for better visibility
-                textAnchor="end"
-                interval={0} // Display all labels
-              />
-              <YAxis stroke="#6b7280" />
-              <Tooltip formatter={(value, name) => [`₹${value}`, name]} />
-              <Line
-                type="monotone"
-                dataKey="price"
-                stroke="#4a90e2" // Changed color to a different shade of blue
-                strokeWidth={3}
-                dot={{ stroke: "#4a90e2", strokeWidth: 2 }} // Same color for the dot
-              />
-            </LineChart>
-          </ResponsiveContainer>
+      <LineChart data={courseData}>
+        <CartesianGrid strokeDasharray="3 3" stroke={gridColor} />
+        <XAxis
+          dataKey="name"
+          stroke={textColor}
+          angle={-30}
+          textAnchor="end"
+          interval={0}
+        />
+        <YAxis stroke={textColor} />
+        <Tooltip
+          contentStyle={{ backgroundColor: isDark ? "#1f2937" : "#ffffff", color: textColor }}
+          formatter={(value, name) => [`₹${value}`, name]}
+        />
+        <Line
+          type="monotone"
+          dataKey="price"
+          stroke={lineColor}
+          strokeWidth={3}
+          dot={{ stroke: lineColor, strokeWidth: 2 }}
+        />
+      </LineChart>
+    </ResponsiveContainer>
         </CardContent>
       </Card>
     </div>

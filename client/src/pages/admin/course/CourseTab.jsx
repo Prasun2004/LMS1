@@ -153,7 +153,7 @@ export default function CourseTab() {
     <CardContent>
         <div className='span-y-4'>
            <div>
-             <Label>Course Title</Label>
+             <Label className="mt-5 mb-3">Course Title</Label>
              <Input
               type='text'
               name='courseTitle'
@@ -163,7 +163,7 @@ export default function CourseTab() {
              />
            </div>
            <div>
-             <Label>Sub Title</Label>
+             <Label className="mt-5 mb-3">Sub Title</Label>
              <Input
               type='text'
               name='subTitle'
@@ -173,7 +173,7 @@ export default function CourseTab() {
              />
            </div>
            <div>
-           <Label>Description</Label>
+           <Label className="mt-5 mb-3">Description</Label>
              {/* <Input
               type='text'
               name='description'
@@ -197,7 +197,7 @@ export default function CourseTab() {
            </div>
            <div className='flex items-center gap-5'>
             <div>
-            <Label>Category</Label>
+            <Label className="mt-5 mb-3">Category</Label>
           <Select value={input.category} onValueChange={selectCategory}>
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Select a category" />
@@ -226,7 +226,7 @@ export default function CourseTab() {
           </Select>
             </div>
             <div>
-              <Label>Course Level</Label>
+              <Label className="mt-5 mb-3">Course Level</Label>
                         <Select value={input.courseLevel} onValueChange={selectCourse}>
                           <SelectTrigger className="w-[180px]">
                             <SelectValue placeholder="Select a category" />
@@ -242,19 +242,19 @@ export default function CourseTab() {
                         </Select>
             </div>
             <div>
-              <Label>Price</Label>
+              <Label className="mt-5 mb-3">Price</Label>
               <Input
               type="number"
               name="coursePrice"
               value={input.coursePrice}
               onChange={changeEventHandler}
-              placeholder="454"
+              placeholder="100"
               className="w-fit"
               />
             </div>
            </div>
            <div>
-              <Label>Course Thumbail</Label>
+              <Label className="mt-5 mb-3">Course Thumbail</Label>
               <Input
                type="file"
                accepts="image/*"
@@ -262,13 +262,13 @@ export default function CourseTab() {
                onChange={selectFile}
               />
               {
-                image   && (
-                  <img src={image} className='e-64 my-2'/>
+                (image || input.courseThumbnail)   && (
+                  <img src={image || input?.courseThumbnail} className='e-64 my-2'/>
                 )
               }
             </div>
-            <div>
-              <Button variant="outline" onClick={()=>navigate("/admin/course")}>Cancel</Button>
+            <div className="mt-5 mb-3">
+              <Button variant="outline" onClick={()=>navigate("/admin/course")} className="mr-2">Cancel</Button>
               <Button disabled={isLoading} onClick={updateCourseHandler}>
                 {
                   isLoading ? (

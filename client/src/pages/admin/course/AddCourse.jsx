@@ -55,14 +55,14 @@ export default function AddCourse() {
       </div>
       <div className="space-y-4">
         <div className="">
-          <Label>Title</Label>
+          <Label className="mb-3">Title</Label>
           <Input
             type="text"
             name="courseTitle"
             placeholder="your course name"
             onChange={(e)=>setCourseTitle(e.target.value)}
           />
-          <Label>Category</Label>
+          <Label className="mt-5 mb-3">Category</Label>
           <Select onValueChange={selectedCategory}>
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Select a category" />

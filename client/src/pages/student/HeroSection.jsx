@@ -32,7 +32,7 @@ export default function HeroSection() {
           Search
         </Button>
        </form>
-       <Button className="bg-white dark:bg-gray-800 text-blue-800 rounded-full hover:gray-200"
+       <Button className="bg-white dark:bg-gray-800 text-blue-800 rounded-full hover:gray-200 dark:text-white"
         onClick={()=>navigate(`/course/search?query`)}
        > Explore</Button>
      </div>
