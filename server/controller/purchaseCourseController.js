@@ -84,6 +84,7 @@ export const stripeWebhook = async (req, res) => {
   
   
     let event;
+    const userId =req.id;
     try {
 
       const payloadString = JSON.stringify(req.body, null, 2);
@@ -113,7 +114,7 @@ export const stripeWebhook = async (req, res) => {
         const session = event.data.object;
   
         const purchase = await CoursePurchase.findOne({
-          paymentId: session.id,
+           paymentId: session.id,
         }).populate({ path: "courseId" });  
   
         if (!purchase) {
@@ -134,7 +135,7 @@ export const stripeWebhook = async (req, res) => {
         }
   
         await purchase.save();
-        console.log(purchase);
+       
         // Update user's enrolledCourses
         await User.findByIdAndUpdate(
           purchase.userId,
@@ -164,28 +165,27 @@ export const stripeWebhook = async (req, res) => {
          const course = await Course.findById(courseId)
           .populate({path:"creator"})
           .populate({ path:"lectures"});
-
+           
           const purchased =await CoursePurchase.findOne({userId,courseId});
-        
+            
           if (!course) {
               return res.status(404).json({
                 message:"course not found for this id"
               })
           };
 
-          // const purchase =purchased.status;
+          const purchase =purchased?.status;
          
-          //  let change;
-          //  console.log(purchase);
-          // if (purchase == "completed") {
-          //     change =true;
-          // }else{
-          //   change =false;
-          // }
+           let change =false;
+          
+          if (purchase === "completed") {
+              change =true;
+          }
+          
 
           return res.status(200).json({
              course,
-             purchased: !!purchased , // true if purchsed other false
+             purchased: change , // true if purchsed other false
              message:"course found successfully"
           });
 

@@ -6,7 +6,7 @@ import { useGetPublishedCourseQuery } from '@/features/api/courseApi';
 export default function Courses() {
     const {data,isLoading,isSuccess,isError}=useGetPublishedCourseQuery();
     
-    //console.log(data);
+    console.log(data);
     if(isError) return 
   return (
     <div className='bg-gray-50 dark:bg-[#141414]'>
@@ -15,7 +15,7 @@ export default function Courses() {
              <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
              {
                 isLoading?  (
-                    Array.from({ length: 8 }).map((_, index) => (
+                    Array.from({ length: 4 }).map((_, index) => (
                       <CourseSkeleton key={index} />
                     ))
                   ) :(

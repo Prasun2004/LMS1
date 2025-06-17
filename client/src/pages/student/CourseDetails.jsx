@@ -36,7 +36,7 @@ export default function CourseDetails() {
           <div className='max-w-7xl mx-auto py-8 px-4 md:px-8 flex flex-col gap-2'> 
              <h1 className='font-bold text-2xl md:text-3xl'>{data?.course?.courseTitle}</h1>
              <p className='text-base md:text-lg '>{data?.course?.subTitle}</p>
-             <p>Creted by<span className='text-[#c0c4fc] underline italic'>{data?.course?.creator?.name}</span></p>
+             <p>Created by<span className='text-[#c0c4fc] underline italic'>{data?.course?.creator?.name}</span></p>
              <div className='flex item-center gap-2 text-sm'>
                 <BadgeInfo size={16}/>
                 <p>Last Updated { data?.course?.createdAt.split("T")[0]}</p>
