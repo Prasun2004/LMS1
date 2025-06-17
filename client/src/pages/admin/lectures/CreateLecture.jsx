@@ -78,9 +78,9 @@ export default function CreateLecture() {
               "Create Lecture"
             )}
           </Button>
-          <Button onClick={gotoquiz}>
+          {/* <Button onClick={gotoquiz}>
             Go to Quiz
-          </Button>
+          </Button> */}
         </div>
         <div className="mt-24">
           {lectureLoading ? (
