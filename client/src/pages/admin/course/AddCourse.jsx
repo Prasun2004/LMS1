@@ -50,10 +50,7 @@ export default function AddCourse() {
       <div className="mb-4">
         <h1 className="font-bold text-xl">Let's add Course </h1>
         <p className="text-sm">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem
-          necessitatibus quisquam nesciunt aut vel eveniet. Doloremque minima
-          eius pariatur libero error rem laborum aperiam velit nisi quibusdam
-          corporis, expedita recusandae.
+          Start by adding the essential details to launch your course and make it available to learners.
         </p>
       </div>
       <div className="space-y-4">

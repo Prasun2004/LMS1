@@ -133,7 +133,10 @@ export default function CourseTab() {
         <div>
             <CardTitle>Basic Course Information</CardTitle>
             <CardDescription>
-                Make Change to your course here.Click save when gkuk hgugu ghugugku  iuguigguiuggiug 
+                Make Change to your course here
+                Provide a clear and engaging description of your course. 
+                Include what learners will gain, key topics covered, and who the course is for. 
+                A well-written description helps attract and inform potential students.
             </CardDescription>
         </div>
         <div className='space-x-2'>

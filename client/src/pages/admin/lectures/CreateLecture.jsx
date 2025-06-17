@@ -47,10 +47,10 @@ export default function CreateLecture() {
       <div className="mb-4">
         <h1 className="font-bold text-xl">Let's add Lecture </h1>
         <p className="text-sm">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem
-          necessitatibus quisquam nesciunt aut vel eveniet. Doloremque minima
-          eius pariatur libero error rem laborum aperiam velit nisi quibusdam
-          corporis, expedita recusandae.
+          Please provide the lecture title and select the appropriate category. 
+          This information will help organize and present the lecture effectively to 
+          learners across all modules. Make sure the title is clear and relevant, and 
+          the category reflects the subject matter.
         </p>
       </div>
       <div className="space-y-4">
