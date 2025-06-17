@@ -20,15 +20,16 @@ export default function HeroSection() {
      <div className='max-w 3xl mx-auto'>
        <h1 className='text-white text-4xl font-bold mb-4'>Find the best course</h1>
        <p className='text-gray-200 dark:text-gray-400 mb-8'>Browse courses, learn at your pace, and track your progress easily</p>
-       <form onSubmit={searchHandler} className='flex items-center bg-white dark:bg-gray-800 rounded-full shadow-lg overflow-hidden max-w xl mx-auto mb-6'>
+       <form onSubmit={searchHandler} className='flex items-center bg-white dark:bg-gray-800 rounded-full shadow-lg overflow-hidden max-w-md xl:max-w-lg 
+                mx-auto mb-6 h-14'>
         <Input
          type="text"
          value={searchQuery}
          onChange={(e)=>setSearchQuery(e.target.value)}
          placeholder="search course"
-         className="flex-grow border-none focus-visible:ring-0 px-6 py-3 text-gray-900 dark:text-gray-100 placeholder:geay-400 dark:placeholder-gray-500"
+         className="flex-grow border-none focus-visible:ring-0 px-6 py-3 text-gray-900 dark:text-gray-100 placeholder:geay-400 dark:placeholder-gray-500 h-14"
         />
-        <Button type="submit" className='bg-gray-600 dark:bg-gray-700 text-white px-6 py-3 rounded-r-full hover:bg-blue-700 dark:bg-blue-800'>
+        <Button type="submit" className='bg-gray-600 dark:bg-gray-700 text-white px-6 py-3 rounded-r-full hover:bg-blue-700 dark:bg-blue-800 h-14'>
           Search
         </Button>
        </form>
