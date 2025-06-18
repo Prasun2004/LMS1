@@ -26,7 +26,6 @@ export const createCheeckoutSession =async(req,res)=>{
            courseId,
            userId,
            amount:course.coursePrice,
-           status:"pending"
        });
       
        
@@ -167,7 +166,7 @@ export const stripeWebhook = async (req, res) => {
           .populate({ path:"lectures"});
            
           const purchased =await CoursePurchase.findOne({userId,courseId});
-            
+          
           if (!course) {
               return res.status(404).json({
                 message:"course not found for this id"

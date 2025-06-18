@@ -5,7 +5,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 
 export default function SingleCourse({course}) {
-  console.log(course);
+  
   return (
     <Link to={`course-details/${course._id}`}>
       <Card className="overflow-hidden rounded-lg dark:bg-gray-800 bg-white shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
